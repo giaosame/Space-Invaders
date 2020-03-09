@@ -30,7 +30,7 @@ public class BulletConstroller : MonoBehaviour
             Destroy(gameObject);
             
             // Increases player's score
-            // PlayerScore.playerScore += 100;
+            PlayerScore.playerScore += 10;
             // Audio.isInvaderKilled = true;
         }
         else if(other.CompareTag("Base"))

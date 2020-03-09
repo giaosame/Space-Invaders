@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
     {
     	if (Input.GetButton("Fire1") && Time.time > nextShot)
     	{
-    		print("Hello World!");
     		nextShot = Time.time + shotRate;
     		Instantiate(bullet, spawnBullet.position, spawnBullet.rotation);
     	}
