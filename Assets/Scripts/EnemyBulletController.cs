@@ -27,15 +27,14 @@ public class EnemyBulletController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
+            other.GetComponentInParent<PlayerController>().Destroy();
             Destroy(gameObject);
-            GameOver.isPlayerDead = true;
         }
         else if (other.CompareTag("Base"))
         {
             GameObject playerBase = other.gameObject;
             BaseHealth baseHealth = playerBase.GetComponent<BaseHealth>();
-            baseHealth.health -= 1;
+            baseHealth.ReduceHealth();
             Destroy(gameObject);
         }
     }

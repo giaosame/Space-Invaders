@@ -4,14 +4,31 @@ using UnityEngine;
 
 public class BaseHealth : MonoBehaviour
 {
-	public float health = 5f;
+    public GameObject ExplosionEffect;
+    public static float InitialHealth = 5f;
+    public AudioSource ExplosionSound;
+
+    private float _health;
+
+    void Start()
+    {
+        _health = InitialHealth;
+    }
    
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0f)
+        if (_health <= 0f)
         {
-        	Destroy(gameObject);
+            Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
+            ExplosionSound.Play();
+
+            Destroy(gameObject);
         }
+    }
+
+    public void ReduceHealth()
+    {
+        _health--;
     }
 }

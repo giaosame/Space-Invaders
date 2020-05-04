@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
 	public float maxBound = 10;
 	public float minBound = -10;
 
-	public GameObject bullet;
-	public Transform spawnBullet;
-	public float shotRate;
+    public GameObject ExplosionEffect;
+    public GameObject Bullet;
+	public Transform BulletSpawnTransform;
+    public AudioSource FireSound;
+    public float shotRate;
 
 	private float nextShot;
 
@@ -40,7 +42,16 @@ public class PlayerController : MonoBehaviour
     	if (Input.GetButton("Fire1") && Time.time > nextShot)
     	{
     		nextShot = Time.time + shotRate;
-    		Instantiate(bullet, spawnBullet.position, spawnBullet.rotation);
-    	}
+    		Instantiate(Bullet, BulletSpawnTransform.position, Quaternion.identity);
+            FireSound.Play();
+        }
+    }
+
+    public void Destroy()
+    {
+        Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
+        
+        GameOver.isPlayerDead = true;
+        Destroy(gameObject);
     }
 }
